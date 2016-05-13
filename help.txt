@@ -1,0 +1,132 @@
+var isSpaceCreated = false;
+var isDesignCreated = false;
+
+var currentUserID="";
+
+
+var submitFormGetResponse = function (form,successDivID, successFunction,errorFunction){
+
+//submit requested form
+jQuery(form).find(':submit').trigger("click");
+//wait for account creation response
+var timer0 = setInterval(function() {
+    console.log(successDivID+"waiting for response");
+		if (jQuery(successDivID).length){
+			console.log(form+" successfull");
+			clearInterval(timer0);
+			successFunction(form);
+	    }
+	    else{
+	    	if (jQuery(".frm_error").length){
+	    	console.log(form+" error");
+	    	clearInterval(timer0);
+	    	errorFunction(form);
+	    	}
+	    }
+}, 150);
+
+}
+
+//Submit all forms button
+jQuery("#customSubmitAll").on("click",function(){
+    // Submit account creation form and wait for response 
+	submitFormGetResponse('#form_frmprocontact2','#accountCreated',submitProjects,accountCreationFailed);
+})
+
+
+var submitProjects = function (){
+	//check if user is logged in and userID is available on the page (checking on space creation form's userID field.)
+	if (jQuery("#field_iz839").attr("value") ===""){
+		console.log("UserID unknown!");
+		//get UserID from ajaxuserid data page
+		jQuery("#data").load("/poplet/data/ajaxuserid/ #userID", function() {
+		currentUserID = jQuery("#data").text();
+			//fill UserID fields on all forms
+			//space
+			jQuery("#field_iz839").attr("data-frmval", currentUserID);
+			jQuery("#field_iz839").attr("value", currentUserID);
+			//design
+			jQuery("#field_iz8393").attr("data-frmval", currentUserID);
+			jQuery("#field_iz8393").attr("value", currentUserID);
+			console.log("UserID inserted on all forms");
+		});
+	//TO BE ADDED - depending on project creation request checkboxes, submit required forms
+	 //submit space forms
+	 submitFormGetResponse('#form_l6nqm','#spaceCreated',projectCreationSuccess,projectCreationError)
+	 //submit space forms
+	 submitFormGetResponse('#form_l6nqm3','#designCreated',projectCreationSuccess,projectCreationError)
+	}
+
+}
+
+var accountCreationFailed = function(form){
+	console.log("account creation failed. Projects won't be submitted. FORM = "+form);
+}
+
+var projectCreationSuccess = function(form){
+	console.log("Project "+form+" created");
+}
+var projectCreationError = function(form){
+	console.log("Project "+form+" created");
+}
+
+
+
+
+//Custom subbmit button click
+
+
+if ($('#account-created').length){
+        //submit space forms
+        jQuery("#form_l6nqm input[type='submit']").trigger("click")
+		//submit design forms
+        jQuery("#form_l6nqm3 input[type='submit']").trigger("click")
+        // submit account creation
+        jQuery("#form_frmprocontact2 input[type='submit']").trigger("click")
+    }
+
+
+
+
+
+
+
+
+//form call backs
+SUCCESS
+//Your design project was successfully updated. <div id="formCreated" class=".hidden"></div>
+//Your design project was successfully created. <div id="formSubmitted" class=".hidden"></div>
+
+ERROR
+<div class="frm_error"
+
+
+
+
+
+var currentUserID = jQuery("#data").text();
+console.log(currentUserID);
+
+
+$( "#result" ).load( "ajax/test.html", function() {
+
+  alert( "Load was performed." );
+
+});
+
+/*insert userID in create space form*/
+jQuery("#field_iz839").attr("data-frmval", currentUserID);
+
+
+
+jQuery.get("/poplet/data/ajaxuserid/ #userID", function( my_var ) {
+    jQuery("#field_iz839").attr("data-frmval", my_var)
+});
+
+
+var url = 'http://www.google.com';
+var load = $('<div>');
+var content = '';
+load.load(url, function(result){
+   content = load.html(); 
+});

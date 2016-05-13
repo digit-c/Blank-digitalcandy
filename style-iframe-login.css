@@ -1,0 +1,30 @@
+#red-border:after, .footer, .header,h1{display:none;}
+
+#loginform{font-size: 1.2em;text-align:right;margin-right:1em}
+#loginform p{;display:inline-block;width:42.5%; margin-right:6%;padding-top:.2em}
+input[type=text],input[type=password]{}
+
+.btn-important{margin: 0em 1% 0 0;font-size:.9em;}
+
+
+/*css used on the login page too*/
+      #login{margin:0 auto; padding:2%}
+        #login h1 a, .login h1 a {
+            background: none;
+            padding-bottom: 30px;
+            display:none
+        }
+        #login a ,#login .message{display:none}
+        .login form{background:none; box-shadow:none; padding:0; margin:0}
+
+.wp-core-ui .button.button-large{padding:1rem;border-radius: 4px;border:none;text-transform: uppercase;font-weight: bold;white-space: nowrap;    height: auto;}
+.wp-core-ui .button-primary{background: #001b70;color:white;display: inline-block;width: 284px;padding: 1.5em 1em;margin: 1em;}
+	
+input[type=text],input[type=text]:focus{	border: 1px solid #e6e6e6;
+    text-align: left;
+    border-radius: 4px;
+    -webkit-box-shadow: none; 
+    box-shadow: none;} 
+
+    /*dashboard*/
+    body{background: none}
